@@ -12,7 +12,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <li class="nav-item" sec:authorize="hasRole('ADMIN')">
         <a class="nav-link" th:href="@{/auxiliere.asp}">
           <i class="fas fa-fw fa-user-alt"></i>
           <span>Gestion des comptes</span></a>

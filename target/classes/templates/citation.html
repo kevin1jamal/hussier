@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="head :: tetelien">
+
+  
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+   <ul th:replace="siderbar :: sidebar"></ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        
+        <nav th:replace="header :: topbar"></nav>
+        
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800 text-center"><u>Tableau des Sommations</u></h1>
+         
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <a class="btn btn-primary align-right" href="#" data-toggle="modal" data-target="#modalajouter">Ajouter</a><a href="" class="btn btn-info">Excel</a> <a class="btn btn-warning text-left" href="/sommationarchive.asp">Corbeille</a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                     <th>Reference</th>
+                      
+                      <th>Num</th>
+                      <th>Nom</th>
+                      <th>Date</th>
+                      <th>Actions</th>
+                    <!-- @{/{id}(id=${req.id})} route de la modification vers une autre page -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="c:${listecitation}">
+                    <td th:text="${sommationDto.reference}"></td>
+                     
+                      <td th:text="${c.num_rrm}"></td>
+                      <td th:text="${c.pers_nom}"></td>
+                      <td th:text="${c.date_an}"></td>
+                      <td class="text-center"><a data-toggle="modal"   data-target="#modal-toTrash"
+                                           th:attr="data-target='#modal-toaff'+${c.num_rrm}" class="btn btn-primary"><i class="fas fa-print"></i></a><a href="" data-toggle="modal"   data-target="#modal-toTrash"
+                                           th:attr="data-target='#modal-toTrash'+${c.num_rrm}"      class="btn btn-success"><i class="fa fa-edit"></i></a><a th:href="@{/arch/{i}(i=${c.id})}" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+                    
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                    <!-- Ajout Requerant-->
+  <div class="modal fade"  th:id="modal-toTrash+${c.num_rrm}"   tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" th:text="${c.num_rrm}">Ajout d'un Requerant </h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">X</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        
+           
+                  <p>Tous les champs (*) sont obligatoires. loiasse</p>
+                  <form  th:method="POST"  th:object="${citat}"  class="probootstrap-form">
+                   
+                   
+                   
+          
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" type="button" data-dismiss="modal"><span class="fa fa-close"></span>Fermer</button>
+           <input type="submit" class="btn btn-success" id="submit" name="submit" value="Valider">
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+              
+              
+               <!-- Modal afficher -->
+  
+                    
+                     
+                     
+                    </tr>
+                  
+                   
+                   
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+     <footer th:replace="footer :: footerbar"></footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Logout Modal-->
+  <div class="modal fade" id="modalajouter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ajout d'un Requerant</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        
+           
+                  <p>Tous les champs (*) sont obligatoires.</p>
+                  <form  th:method="POST"    class="probootstrap-form">
+                    <div class="form-group">
+                      <label for="numero">Numero *</label>
+                      <input type="text" th:field="*{numero}" class="form-control" id="numero" name="numero" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="num_rrm">Numero RRM *</label>
+                      <input type="number" th:field="*{num_rrm}" class="form-control" id="num_rrm" name="num_rrm" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="num_parquet">Numero Parquet *</label>
+                      <input type="number" th:field="*{rnum_parquet}" class="form-control" id="num_parquet" name="num_parquet" required>
+                    </div>
+                   
+                    <div class="form-group">
+                      <label for="date_an">Date *</label>
+                      <input type="text" th:field="*{date_an}" class="form-control" id="date_an" name="date_an" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="date_mois">Mois *</label>
+                      <input type="text" th:field="*{date_mois}" class="form-control" id="date_mois" name="date_mois" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="tribunal">Tribunal *</label>
+                      <input type="text" th:field="*{tribunal}" class="form-control" id="tribunal" name="tribunal" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="instance">Instance *</label>
+                      <input type="text" th:field="*{instance}" class="form-control" id="instance" name="instance" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="pers_nom">Nom  Personne*</label>
+                      <input type="text" th:field="*{pers_nom}" class="form-control" id="pers_nom" name="pers_nom" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="pers_prof">Fonction personne *</label>
+                      <input type="text" th:field="*{pers_prof}" class="form-control" id="pers_prof" name="pers_prof" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="pers_num">Numero Personne *</label>
+                      <input type="text" th:field="*{pers_num}" class="form-control" id="pers_num" name="pers_num" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="tribunal_date">Date du proces *</label>
+                      <input type="date" th:field="*{pers_num}" class="form-control" id="tribunal_date" name="tribunal_date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="tribunal_lieu">Lieu du proces *</label>
+                      <input type="text" th:field="*{tribunal_lieu}" class="form-control" id="tribunal_lieu" name="tribunal_lieu" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="pers_num">Numero Personne *</label>
+                      <input type="text" th:field="*{pers_num}" class="form-control" id="pers_num" name="pers_num" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="tribunal_date">Date du proces *</label>
+                      <input type="date" th:field="*{tribunal_date}" class="form-control" id="tribunal_date" name="tribunal_date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="tribunal_dest">Tribunale *</label>
+                      <input type="text" th:field="*{tribunal_dest}" class="form-control" id="tribunal_dest" name="tribunal_dest" required>
+                    </div>
+                    
+                     <div class="form-group">
+                      <label for="instance_lieu">Lieu Instance *</label>
+                      <input type="text" th:field="*{instance_lieu}" class="form-control" id="instance_lieu" name="instance_lieu" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="matiere">Matiere *</label>
+                      <input type="text" th:field="*{matiere}" class="form-control" id="matiere" name="matiere" required>
+                    </div>
+                    
+                     <div class="form-group">
+                      <label for="motif">Motif *</label>
+                      <input type="textarea" th:field="*{motif}" class="form-control" id="motif" name="motif" required>
+                    </div>
+                   
+                   
+                   
+                   
+                   
+                   
+                    
+                    
+                  
+                
+          
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" type="button" data-dismiss="modal"><span class="fa fa-close"></span>Fermer</button>
+           <input type="submit" class="btn btn-success" id="submit" name="submit" value="Valider">
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+
+ 
+
+</body>
+
+
+</html>
